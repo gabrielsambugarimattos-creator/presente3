@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Você 💖</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body{
+    margin:0;
+    font-family:Poppins, sans-serif;
+    background: linear-gradient(135deg,#ed32ae,#ee73a6,#ffd1ff);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* fundo glass */
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:25px;
+}
+
+/* título */
+h1{
+    text-align:center;
+    font-size:2.6rem;
+    margin-top:10px;
+    text-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* cards gerais */
+.card{
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius:20px;
+    padding:20px;
+    margin-top:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* contador */
+.counter{
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.counter div{
+    background: rgba(255,255,255,0.2);
+    padding:15px;
+    border-radius:15px;
+    min-width:120px;
+    text-align:center;
+}
+
+/* galeria */
+.gallery{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap:10px;
+}
+
+.gallery img{
+    width:100%;
+    height:360px;
+    object-fit:cover;
+    border-radius:15px;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+
+/* envelope */
+.envelope{
+    text-align:center;
+    cursor:pointer;
+    padding:15px;
+    border-radius:15px;
+    background:white;
+    color:#ff4d6d;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.envelope:hover{
+    transform:scale(1.05);
+}
+
+.letter{
+    display:none;
+    margin-top:15px;
+    padding:20px;
+    border-radius:15px;
+    background:white;
+    color:#333;
+    animation:fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* corações */
+.heart{
+    position:fixed;
+    top:-10px;
+    color:#ff0130;
+    font-size:18px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💖 Para o Amor da Minha Vida 💖</h1>
+
+<div class="card">
+    <p style="text-align:center;">
+        Esse presentinho é um jeito de demonstrar um pouco do meu amor por vc. Espero que você goste! ❤️
+    </p>
+</div>
+
+<!-- CONTADOR -->
+<div class="card">
+    <h2 style="text-align:center;"> Nosso tempo juntos</h2>
+    <div class="counter">
+        <div><h3 id="days">0</h3><p>Dias</p></div>
+        <div><h3 id="hours">0</h3><p>Horas</p></div>
+        <div><h3 id="minutes">0</h3><p>Minutos</p></div>
+    </div>
+</div>
+
+<!-- GALERIA -->
+<div class="card">
+    <h2 style="text-align:center;"> Nossos momentos</h2>
+    <div class="gallery">
+        <img src="img/nos1.jpeg">
+        <img src="img/nos2.jpeg">
+        <img src="img/nos3.jpeg">
+    </div>
+</div>
+
+<!-- CARTA -->
+<div class="card" style="text-align:center;">
+    <div class="envelope" onclick="openLetter()">
+        💌 Abrir carta especial
+    </div>
+
+    <div class="letter" id="letter">
+        <p>
+            Minha princesa❤️<br><br>
+            Nesse dia tão especial, eu só consigo lembrar de todos os nossos momentos juntos, consigo lembrar de cada risada, cada sorriso seu, cada friozinho na barriga, e espero poder sentir e ter mais memórias desse tipo PARA SEMPRE! Que seu aniversário seja tão radiante como o brilho do seu sorriso, e sou muito grato por estar mais um dia tão especial com você, e sempre espero comemorar tudo isso com vc para sempre. 
+            Você chegou na minha vida e tudo ficou mais leve, mais bonito e mais feliz.<br>
+            Cada detalhe seu é especial pra mim.<br><br>
+            Eu te amo mais do que palavras conseguem explicar 
+        </p>
+        <p>Ass: seu A.S</p>
+    </div>
+</div>
+
+</div>
+
+<script>
+
+
+const startDate = new Date("2026-02-19");
+
+function updateTime(){
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor(diff / (1000*60*60));
+    const minutes = Math.floor(diff / (1000*60));
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+}
+
+setInterval(updateTime,1000);
+updateTime();
+
+// carta
+function openLetter(){
+    document.getElementById("letter").style.display="block";
+}
+
+// corações
+function heart(){
+    const h = document.createElement("div");
+    h.classList.add("heart");
+    h.innerHTML="❤️";
+
+    h.style.left = Math.random()*100 + "vw";
+    h.style.animationDuration = (Math.random()*3+2)+"s";
+
+    document.body.appendChild(h);
+
+    setTimeout(()=>h.remove(),5000);
+}
+
+setInterval(heart,250);
+
+</script>
+
+</body>
+</html>
